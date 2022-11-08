@@ -587,9 +587,12 @@ if ( NOT DISABLE_SPICY )
 
     if ( NOT SPICY_PLUGIN_PATH )
         set(SPICY_PLUGIN_PATH ${CMAKE_SOURCE_DIR}/auxil/spicy-plugin)
+        set(SPICY_PLUGIN_BINARY_PATH ${CMAKE_BINARY_DIR}/src/builtin-plugins/spicy-plugin)
     endif ()
 
     string(APPEND ZEEK_INCLUDE_PLUGINS ";${SPICY_PLUGIN_PATH}")
+
+    include(BuiltInSpicyAnalyzer)
 endif ()
 
 include_directories(BEFORE
