@@ -3,6 +3,7 @@
 #include "zeek/analyzer/protocol/mysql/MySQL.h"
 
 #include "zeek/Reporter.h"
+#include "zeek/analyzer/Manager.h"
 #include "zeek/analyzer/protocol/mysql/events.bif.h"
 #include "zeek/analyzer/protocol/tcp/TCP_Reassembler.h"
 
@@ -32,6 +33,19 @@ void MySQL_Analyzer::EndpointEOF(bool is_orig)
 	{
 	analyzer::tcp::TCP_ApplicationAnalyzer::EndpointEOF(is_orig);
 	interp->FlowEOF(is_orig);
+	}
+
+// Add SSL to the parent and Remove() us. This is a bit different form other
+// analyzers where they call ForwardStream() explicitly.
+//
+// For discussion: What's a good pattern here?
+void MySQL_Analyzer::StartTLS()
+	{
+	auto ssl = analyzer_mgr->InstantiateAnalyzer("SSL", Conn());
+	Parent()->AddChildAnalyzer(ssl);
+
+	// That's it, no MySQL here.
+	Remove();
 	}
 
 void MySQL_Analyzer::DeliverStream(int len, const u_char* data, bool orig)

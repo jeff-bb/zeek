@@ -25,6 +25,8 @@ public:
 	// Overridden from analyzer::tcp::TCP_ApplicationAnalyzer.
 	void EndpointEOF(bool is_orig) override;
 
+	void StartTLS();
+
 	static analyzer::Analyzer* Instantiate(Connection* conn) { return new MySQL_Analyzer(conn); }
 
 protected:
