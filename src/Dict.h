@@ -635,7 +635,7 @@ public:
 			auto loc = detail::GetCurrentLocation();
 			reporter->RuntimeError(&loc,
 			                       "Attempted to create DictEntry with excessively large key, "
-			                       "truncating key (%" PRIu64 " > %d)",
+			                       "truncating key (%" PRIu64 " > %u)",
 			                       key_size, detail::DictEntry<T>::MAX_KEY_SIZE);
 			}
 
