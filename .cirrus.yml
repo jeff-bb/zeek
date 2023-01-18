@@ -433,8 +433,8 @@ container_image_manifest_docker_builder:
     )
   env:
     CIRRUS_LOG_TIMESTAMP: true
-    DOCKER_USERNAME: ENCRYPTED[7ecd9c29dafa6200b715dbff116a7d169ef3b19f0587c8dd8abf7be346b431424a824468532198cbdf97c86a0ffd4df0]
-    DOCKER_PASSWORD: ENCRYPTED[dcd1eb93c1b974951a3b5303e64d257522ecac367dc7b73eb8104652d51d24cbdd020e793a0fa6f41ce5dc6a245ef310]
+    DOCKER_USERNAME: ENCRYPTED[!505b3dee552a395730a7e79e6aab280ffbe1b84ec62ae7616774dfefe104e34f896d2e20ce3ad701f338987c13c33533!]
+    DOCKER_PASSWORD: ENCRYPTED[!6c4b2f6f0e5379ef1091719cc5d2d74c90cfd2665ac786942033d6d924597ffb95dbbc1df45a30cc9ddeec76c07ac620!]
   login_script: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
   set_image_tag_script: |
     # If we have a CIRRUS_TAG, use that for the tags to push the multiarch
