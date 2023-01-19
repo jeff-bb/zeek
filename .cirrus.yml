@@ -58,7 +58,7 @@ branch_whitelist: &BRANCH_WHITELIST
   # - Always build master and release/* builds from the main repo
   only_if: >
     ( $CIRRUS_REPO_NAME != 'zeek-security' || $CIRRUS_OS != "darwin" ) &&
-    ( ( $CIRRUS_PR != '' && $CIRRUS_BRANCH !=~ 'dependabot/.*' ) ||
+    ( ( $CIRRUS_PR != '' && $CIRRUS_BRANCH !=~ 'dependabot/.*' && $CIRRUS_BRANCH != 'topic/awelzel/2674-arm64-containers-on-cirrus') ||
     ( $CIRRUS_REPO_NAME == 'zeek' &&
       (
       $CIRRUS_BRANCH == 'master' ||
